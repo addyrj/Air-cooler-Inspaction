@@ -1,0 +1,45 @@
+﻿project:
+  name: "Air Cooler Inspection System"
+  cooler_model: "Brize Glacier 110"
+  version: "1.0.0"
+
+cameras:
+  camera1_index: 0
+  camera2_index: 1
+  resolution_width: 1280
+  resolution_height: 720
+
+rotation:
+  encoder_port: "COM3"
+  total_degrees: 360
+  capture_every_degrees: 15
+  min_coverage_percent: 90
+  rotation_speed_dps: 30
+
+ai_models:
+  active_version: "v1.0"
+  mode: "simulation"
+  patchcore_model: "models/active/patchcore.onnx"
+  classifier_model: "models/active/classifier.onnx"
+  classes_file: "models/active/classes.json"
+
+thresholds:
+  anomaly_score_fail: 0.65
+  anomaly_score_recheck: 0.45
+  classify_min_confidence: 0.60
+  blur_score_minimum: 80.0
+
+database:
+  type: "sqlite"
+  path: "backend/inspection.db"
+
+api:
+  backend_port: 8000
+  ai_engine_port: 8001
+  ai_engine_url: "http://localhost:8001"
+
+sync:
+  enabled: true
+  cloud_url: "https://your-cloud-server.com"
+  check_interval_seconds: 60
+  max_retry_attempts: 5
